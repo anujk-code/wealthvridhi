@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <m<eta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WEALTHVRIDHI - Mutual Fund Distributor</title>
     <style>
         /* CSS reset & base */
@@ -18,26 +18,7 @@
         nav a { color: var(--white); text-decoration: none; margin-left: 20px; font-weight: 500; }
         nav a:hover { color: var(--secondary-blue); }
         
-        /* Hero Carousel Banner */
-        .hero-slider { position: relative; width: 100%; height: 400px; overflow: hidden; background-color: var(--primary-blue); }
-        .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 0.8s ease-in-out; display: flex; align-items: center; justify-content: center; text-align: center; color: white; padding: 20px; }
-        .slide.active { opacity: 1; z-index: 1; }
-        .slide-content h1 { font-size: 3rem; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
-        .slide-content p { font-size: 1.2rem; margin-bottom: 20px; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); }
-        .slide-btn { padding: 12px 30px; background-color: var(--accent); color: white; border: none; border-radius: 25px; font-size: 1.1rem; cursor: pointer; text-decoration: none; font-weight: bold; transition: background 0.3s; }
-        .slide-btn:hover { background-color: #ff4757; }
-        
-        /* Slide Backgrounds */
-        .bg-1 { background: linear-gradient(135deg, #0a2540 0%, #0070f3 100%); }
-        .bg-2 { background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); }
-        .bg-3 { background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%); }
-        
-        /* Slider Controls */
-        .slider-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.4); color: white; border: none; font-size: 2rem; padding: 10px 15px; cursor: pointer; z-index: 10; border-radius: 5px; }
-        .slider-arrow:hover { background: rgba(0,0,0,0.8); }
-        .prev { left: 20px; }
-        .next { right: 20px; }
-        
+       
         /* Main Sections */
         section { padding: 60px 5%; max-width: 1200px; margin: auto; }
         .section-title { text-align: center; font-size: 2.2rem; color: var(--primary-blue); margin-bottom: 40px; }
@@ -129,16 +110,7 @@
         .calc-result { margin-top: 20px; padding: 20px; background: var(--light-gray); border-radius: 5px; text-align: center; }
         .calc-result h3 { color: var(--primary-blue); font-size: 1.8rem; }
         
-        /* Contact Form */
-        .contact-section { display: flex; flex-wrap: wrap; gap: 40px; background: var(--white); padding: 40px; border-radius: 10px; }
-        .contact-info { flex: 1; min-width: 300px; }
-        .contact-form { flex: 1; min-width: 300px; display: flex; flex-direction: column; gap: 15px; }
-        .contact-form input, .contact-form textarea { padding: 12px; border: 1px solid #ccc; border-radius: 5px; }
-        .contact-form button { background: var(--primary-blue); color: white; border: none; padding: 12px; border-radius: 5px; cursor: pointer; font-weight: bold; }
         
-        /* Footer */
-        footer { background: var(--primary-blue); color: #ccc; text-align: center; padding: 30px 20px; margin-top: 40px; font-size: 0.9rem; }
-        .disclaimer { border: 1px solid #555; padding: 15px; margin: 20px auto; max-width: 800px; font-size: 0.8rem; text-align: left; }
         
         /* WhatsApp Floating Icon */
         .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background-color: #25d366; color: white; border-radius: 50px; padding: 15px 25px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 1000; display: flex; align-items: center; gap: 10px; }
@@ -151,8 +123,7 @@
             .advisor-card { flex-direction: column; text-align: center; }
         }
     </style>
-    <!-- Chart.js Library -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
 
 <style>
     /* Advanced Calculator CSS */
@@ -169,8 +140,8 @@
     }
     .brand-logo { display: flex; align-items: center; gap: 8px; margin-bottom: 25px; font-size: 22px; font-weight: 700; }
     .brand-logo svg { width: 28px; height: 28px; }
-    .text-WEALTH { color: #f8fafc; }
-    .text-VRIDHI { color: #34d399; }
+    .text-wealth { color: #f8fafc; }
+    .text-vridhi { color: #34d399; }
     .calc-header h2 { margin: 0 0 20px 0; font-size: 24px; color: #fff; }
     .tabs { display: flex; gap: 0; margin-bottom: 30px; background: #0f172a; border-radius: 8px; overflow: hidden; width: fit-content; }
     .tab-btn { background: transparent; border: 1px solid #334155; color: #94a3b8; padding: 12px 40px; font-size: 16px; cursor: pointer; font-family: inherit; font-weight: 600; transition: 0.3s; }
@@ -228,36 +199,202 @@
 
     </header>
 
-    <!-- Auto Sliding Banner -->
-    <div class="hero-slider">
-        <button class="slider-arrow prev" onclick="changeSlide(-1)">&#10094;</button>
-        <button class="slider-arrow next" onclick="changeSlide(1)">&#10095;</button>
-        
-        <div class="slide bg-1 active">
-            <div class="slide-content">
-                <h1>#MissionWealth</h1>
-                <p>Start your wealth creation journey with SIPs starting just ₹500/month.</p>
-                <a href="#calculator" class="slide-btn">Calculate SIP Now</a>
-            </div>
-        </div>
-        
-        <div class="slide bg-2">
-            <div class="slide-content">
-                <h1>Save Tax Smartly</h1>
-                <p>Invest in ELSS Mutual Funds and save up to ₹46,800 in taxes under Section 80C.</p>
-                <a href="#contact" class="slide-btn">Start ELSS Today</a>
-            </div>
-        </div>
-        
-        <div class="slide bg-3">
-            <div class="slide-content">
-                <h1>Plan Your Retirement</h1>
-                <p>Build a 1 Crore+ corpus with disciplined investing. Secure your family's future.</p>
-                <a href="#contact" class="slide-btn">Book Consultation</a>
-            </div>
-        </div>
-    </div>
+    <!-- ============================================================ -->
+<!-- HERO PHOTO SLIDER (5 TO 7 WEEKLY/MONTHLY BANNERS)            -->
+<!-- ============================================================ -->
+<style>
+  .wv-photo-slider {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background-color: #0a2540;
+  }
+  .wv-photo-track {
+    display: flex;
+    transition: transform 0.6s ease-in-out;
+    width: 100%;
+  }
+  .wv-photo-slide {
+    min-width: 100%;
+    display: block;
+    line-height: 0;
+  }
+  .wv-photo-slide img {
+    width: 100%;
+    height: auto;
+    max-height: 450px;
+    object-fit: cover;
+    display: block;
+  }
 
+  /* Left / Right Arrows */
+  .wv-photo-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(10, 37, 64, 0.55);
+    color: #ffffff;
+    border: none;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.25s;
+  }
+  .wv-photo-arrow:hover {
+    background: #34d399;
+    color: #0a2540;
+  }
+  .wv-photo-prev { left: 15px; }
+  .wv-photo-next { right: 15px; }
+
+  /* Bottom Dots (Automatic ban jayenge) */
+  .wv-photo-dots {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+    background: rgba(10, 37, 64, 0.45);
+    padding: 6px 12px;
+    border-radius: 20px;
+  }
+  .wv-photo-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: 0.3s;
+  }
+  .wv-photo-dot.active {
+    background: #34d399;
+    width: 22px;
+    border-radius: 10px;
+  }
+
+  @media (max-width: 768px) {
+    .wv-photo-arrow { width: 32px; height: 32px; font-size: 15px; }
+    .wv-photo-prev { left: 8px; }
+    .wv-photo-next { right: 8px; }
+    .wv-photo-dots { bottom: 8px; padding: 4px 10px; }
+  }
+</style>
+
+<div class="wv-photo-slider" id="wvPhotoSlider">
+  <button class="wv-photo-arrow wv-photo-prev" onclick="movePhotoSlide(-1)">&#10094;</button>
+  <button class="wv-photo-arrow wv-photo-next" onclick="movePhotoSlide(1)">&#10095;</button>
+
+  <div class="wv-photo-track" id="wvPhotoTrack">
+    <!-- PHOTO 1 -->
+    <a href="#calculator" class="wv-photo-slide">
+      <img data-src="banners/banner1.jpg" src="banners/banner1.jpg" alt="WEALTHVRIDHI Banner 1">
+    </a>
+    <!-- PHOTO 2 -->
+    <a href="#services" class="wv-photo-slide">
+      <img data-src="banners/banner2.jpg" src="banners/banner2.jpg" alt="WEALTHVRIDHI Banner 2">
+    </a>
+    <!-- PHOTO 3 -->
+    <a href="#contact" class="wv-photo-slide">
+      <img data-src="banners/banner3.jpg" src="banners/banner3.jpg" alt="WEALTHVRIDHI Banner 3">
+    </a>
+    <!-- PHOTO 4 -->
+    <a href="#knowledge" class="wv-photo-slide">
+      <img data-src="banners/banner4.jpg" src="banners/banner4.jpg" alt="WEALTHVRIDHI Banner 4">
+    </a>
+    <!-- PHOTO 5 -->
+    <a href="https://wa.me/917079946867" target="_blank" class="wv-photo-slide">
+      <img data-src="banners/banner5.jpg" src="banners/banner5.jpg" alt="WEALTHVRIDHI Banner 5">
+    </a>
+
+    
+    <!--
+    <a href="#services" class="wv-photo-slide">
+      <img data-src="banners/banner6.jpg" src="banners/banner6.jpg" alt="WEALTHVRIDHI Banner 6">
+    </a>
+    <a href="#contact" class="wv-photo-slide">
+      <img data-src="banners/banner7.jpg" src="banners/banner7.jpg" alt="WEALTHVRIDHI Banner 7">
+    </a>
+    -->
+  </div>
+
+  <!-- Dots automatic JS se banenge -->
+  <div class="wv-photo-dots" id="wvPhotoDots"></div>
+</div>
+
+<script>
+  (function () {
+    const slider = document.getElementById('wvPhotoSlider');
+    const track = document.getElementById('wvPhotoTrack');
+    const dotsBox = document.getElementById('wvPhotoDots');
+    const slides = track.querySelectorAll('.wv-photo-slide');
+    const total = slides.length;
+    let current = 0;
+    let timer;
+
+    // Auto Cache-Buster: Phone se nayi photo dalte hi turant dikhegi (code edit nahi karna padega)
+    const freshKey = Math.floor(Date.now() / 600000);
+    track.querySelectorAll('img').forEach(img => {
+      img.src = img.getAttribute('data-src') + '?v=' + freshKey;
+    });
+
+    // Jitni photos hongi (5, 6 ya 7), utne dots automatic ban jayenge
+    slides.forEach((_, idx) => {
+      const btn = document.createElement('button');
+      btn.className = 'wv-photo-dot' + (idx === 0 ? ' active' : '');
+      btn.onclick = () => { current = idx; updatePhotoSlider(); resetPhotoTimer(); };
+      dotsBox.appendChild(btn);
+    });
+    const dots = dotsBox.querySelectorAll('.wv-photo-dot');
+
+    function updatePhotoSlider() {
+      track.style.transform = `translateX(-${current * 100}%)`;
+      dots.forEach((d, i) => d.classList.toggle('active', i === current));
+    }
+
+    window.movePhotoSlide = function (step) {
+      current = (current + step + total) % total;
+      updatePhotoSlider();
+      resetPhotoTimer();
+    };
+
+    function startPhotoTimer() {
+      timer = setInterval(() => {
+        current = (current + 1) % total;
+        updatePhotoSlider();
+      }, 4500);
+    }
+
+    function resetPhotoTimer() {
+      clearInterval(timer);
+      startPhotoTimer();
+    }
+
+    // Hover par pause aur mobile par swipe support
+    slider.addEventListener('mouseenter', () => clearInterval(timer));
+    slider.addEventListener('mouseleave', startPhotoTimer);
+
+    let startX = 0;
+    slider.addEventListener('touchstart', e => { startX = e.changedTouches[0].screenX; }, { passive: true });
+    slider.addEventListener('touchend', e => {
+      const endX = e.changedTouches[0].screenX;
+      if (startX - endX > 50) movePhotoSlide(1);
+      if (endX - startX > 50) movePhotoSlide(-1);
+    }, { passive: true });
+
+    startPhotoTimer();
+  })();
+</script>
+<!-- ============================================================ -->
     <!-- About Advisor -->
     <section id="about">
         <h2 class="section-title">Meet Your Advisor</h2>
@@ -524,13 +661,20 @@
         } else if(tab === 'swp') {
             document.getElementById('label-amount').innerText = 'Total Investment (Principal ₹)';
             document.getElementById('group-swp').style.display = 'block';
-            document.getElementById('sipAmount').value = "1000000"; 
+            document.getElementById('sipAmount').value = "1000000";
             document.getElementById('sipRange').value = "1000000";
             updateLabels('Total Investment', 'Total Withdrawn', 'Final Balance will be approx:', 'Final Balance');
         } else {
             document.getElementById('label-amount').innerText = 'Monthly Investment (₹)';
+            if (document.getElementById('sipAmount').value == "1000000") {
+                document.getElementById('sipAmount').value = "5000";
+                document.getElementById('sipRange').value = "5000";
+            }
             updateLabels('Invested Amt', 'Wealth Gain', 'Total Value will be approx:', 'Total Value');
         }
+        
+            
+            
 
         calculateValues();
     }
@@ -805,6 +949,265 @@
         </div>
 
     </div>
+    </div>
+
+    <!-- ========================================== -->
+<!-- KNOWLEDGE CENTER & INSIGHTS (PAGE 5 - FULL FAQ WORKING) -->
+<!-- ========================================== -->
+<style>
+  .knowledge-section { background-color: #ffffff; padding: 60px 20px !important; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; width: 100% !important; max-width: 100vw !important; box-sizing: border-box !important; overflow-x: hidden !important; }
+  
+  /* Container width locked so it never goes off-screen */
+  .kc-container { width: 92% !important; max-width: 980px !important; margin: 0 auto !important; box-sizing: border-box !important; }
+  
+  .kc-header { text-align: center; margin-bottom: 40px; }
+  .kc-header h2 { font-size: 36px; color: #0f172a; margin-bottom: 10px; font-weight: 800; }
+  .kc-header p { font-size: 18px; color: #64748b; }
+  
+  /* Search & Filters */
+  .kc-filters { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; align-items: center; margin-bottom: 30px; }
+  .kc-search { padding: 12px 20px; border: 1px solid #cbd5e1; border-radius: 30px; width: 250px; font-size: 15px; outline: none; transition: 0.3s; box-sizing: border-box; }
+  .kc-search:focus { border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
+  .kc-tab { padding: 10px 20px; background: #f1f5f9; color: #475569; border: 1px solid #e2e8f0; border-radius: 30px; cursor: pointer; font-weight: 600; transition: 0.3s; user-select: none; }
+  .kc-tab.active { background: #0f172a; color: white; border-color: #0f172a; }
+  .kc-tab:hover:not(.active) { background: #e2e8f0; }
+  
+  .swipe-hint { text-align: right; font-size: 14px; color: #94a3b8; margin-bottom: 10px; font-weight: bold; }
+
+  /* Educative Cards - SWIPEABLE SLIDER */
+  .kc-grid { 
+    display: flex; gap: 25px; margin-bottom: 60px; overflow-x: auto; 
+    padding: 10px 5px 30px 5px; scroll-snap-type: x mandatory; 
+    -webkit-overflow-scrolling: touch; scrollbar-width: thin; scrollbar-color: #cbd5e1 #f1f5f9;
+    box-sizing: border-box; width: 100% !important; max-width: 980px !important;
+  }
+  .kc-grid::-webkit-scrollbar { height: 8px; }
+  .kc-grid::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 10px; }
+  .kc-grid::-webkit-scrollbar-thumb { background-color: #cbd5e1; border-radius: 10px; }
+
+  .kc-card { 
+    flex: 0 0 300px; background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 25px; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; justify-content: space-between; scroll-snap-align: start;
+    box-sizing: border-box;
+  }
+  .kc-card.hidden { display: none; } 
+  .kc-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.08); border-color: #cbd5e1; }
+  
+  .kc-icon { font-size: 42px; margin-bottom: 15px; display: block; }
+  .kc-card h3 { font-size: 20px; color: #1e293b; margin-bottom: 12px; font-weight: bold; line-height: 1.3; }
+  .kc-card p { color: #64748b; font-size: 15px; line-height: 1.6; margin-bottom: 20px; }
+  .kc-link { color: #2563eb; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; }
+  .kc-link:hover { text-decoration: underline; }
+
+  /* CTA & FAQ Grid - Locked with minmax(0, ...) so it never stretches */
+  .kc-bottom-grid { 
+    display: grid !important; 
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr) !important; 
+    gap: 30px !important; 
+    align-items: start !important; 
+    width: 100% !important; 
+    max-width: 960px !important; 
+    margin: 0 auto !important;
+    box-sizing: border-box !important; 
+  }
+  
+  .kc-cta-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 30px 25px; text-align: center; height: fit-content; box-sizing: border-box; width: 100% !important; }
+  .kc-cta-box h3 { font-size: 24px; color: #0f172a; margin-bottom: 15px; }
+  .kc-cta-box p { color: #475569; margin-bottom: 25px; font-size: 15px; line-height: 1.5; }
+  .kc-whatsapp-btn { background: #22c55e; color: white; padding: 14px 20px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 15px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; transition: 0.3s; box-shadow: 0 4px 10px rgba(34,197,94,0.3); max-width: 100%; box-sizing: border-box; }
+  .kc-whatsapp-btn:hover { background: #16a34a; transform: scale(1.02); }
+  .arn-tag { display: block; margin-top: 15px; font-size: 12px; color: #94a3b8; font-weight: 600; }
+
+  /* Accordion FAQ Styling - Strictly capped at 540px max-width */
+  .kc-faq-box { background: #ffffff; width: 100% !important; max-width: 540px !important; box-sizing: border-box !important; }
+  .kc-faq-box h3 { font-size: 22px; color: #0f172a; margin-bottom: 20px; text-align: left; }
+  
+  .faq-item { border: 1px solid #e2e8f0; border-radius: 8px; margin-bottom: 10px; background: #f8fafc; box-sizing: border-box !important; width: 100% !important; max-width: 540px !important; overflow: hidden; }
+  
+  .faq-question { width: 100% !important; max-width: 540px !important; box-sizing: border-box !important; text-align: left; padding: 14px 18px; background: transparent; border: none; font-weight: 600; color: #334155; font-size: 15px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; outline: none; margin: 0; }
+  .faq-question:hover { color: #2563eb; }
+  .faq-icon { transition: transform 0.3s ease; font-size: 20px; color: #94a3b8; flex-shrink: 0; margin-left: 12px; }
+  
+  .faq-answer { max-height: 0; overflow: hidden; transition: all 0.3s ease; padding: 0 18px; font-size: 14px; color: #475569; line-height: 1.6; background: #ffffff; box-sizing: border-box !important; text-align: left; margin: 0; width: 100% !important; max-width: 540px !important; white-space: normal !important; word-break: break-word !important; }
+  
+  /* Active states for JS */
+  .faq-item.active .faq-question { border-bottom: 1px solid #e2e8f0; color: #2563eb; }
+  .faq-item.active .faq-icon { transform: rotate(45deg); color: #2563eb; }
+  .faq-item.active .faq-answer { max-height: 400px; padding: 14px 18px; }
+  
+  @media (max-width: 768px) {
+    .kc-bottom-grid { grid-template-columns: minmax(0, 1fr) !important; }
+    .kc-faq-box, .faq-item, .faq-question, .faq-answer { max-width: 100% !important; }
+    .kc-search { width: 100%; }
+    .kc-card { flex: 0 0 270px; }
+  }
+</style>
+
+<section class="knowledge-section" id="knowledge">
+  <div class="kc-container">
+    
+    <div class="kc-header">
+      <h2>Learn & Invest Wisely</h2>
+      <p>Simple insights to help you make smarter financial decisions.</p>
+    </div>
+
+    <!-- Interactive Search & Filters -->
+    <div class="kc-filters">
+      <input type="text" id="kcSearch" class="kc-search" placeholder="🔍 Search topics...">
+      <div class="kc-tab active" data-filter="all">All</div>
+      <div class="kc-tab" data-filter="mutual-funds">Mutual Funds</div>
+      <div class="kc-tab" data-filter="insurance">Insurance</div>
+      <div class="kc-tab" data-filter="sip">SIP Basics</div>
+    </div>
+
+    <div class="swipe-hint">👈 Swipe to explore more cards 👉</div>
+
+    <!-- Swipeable Cards Grid -->
+    <div class="kc-grid" id="kcGrid">
+      <div class="kc-card" data-category="sip mutual-funds">
+        <div><span class="kc-icon">📈</span><h3>Power of Compounding</h3><p>How small regular investments grow into massive wealth over time.</p></div>
+        <a href="https://en.wikipedia.org/wiki/Compound_interest" target="_blank" class="kc-link">Read on Wikipedia ↗</a>
+      </div>
+      <div class="kc-card" data-category="sip mutual-funds">
+        <div><span class="kc-icon">⚖️</span><h3>SIP vs Lumpsum</h3><p>Understand the difference and choose the right path for your financial goals.</p></div>
+        <a href="advanced-calculator.html" class="kc-link">Compare Now ↗</a>
+      </div>
+      <div class="kc-card" data-category="mutual-funds">
+        <div><span class="kc-icon">💡</span><h3>Active vs Passive Funds</h3><p>Choosing the right fund managers to beat inflation & market volatility.</p></div>
+        <a href="https://en.wikipedia.org/wiki/Passive_management" target="_blank" class="kc-link">Read on Wikipedia ↗</a>
+      </div>
+      <div class="kc-card" data-category="insurance">
+        <div><span class="kc-icon">🛡️</span><h3>Term Life Insurance</h3><p>The simplest and purest form of life insurance to protect your family's future.</p></div>
+        <a href="https://en.wikipedia.org/wiki/Term_life_insurance" target="_blank" class="kc-link">Read on Wikipedia ↗</a>
+      </div>
+      <div class="kc-card" data-category="mutual-funds sip">
+        <div><span class="kc-icon">📊</span><h3>Equity vs Debt Funds</h3><p>Balance your risk and return by understanding where your money is invested.</p></div>
+        <a href="https://en.wikipedia.org/wiki/Mutual_fund" target="_blank" class="kc-link">Read on Wikipedia ↗</a>
+      </div>
+      <div class="kc-card" data-category="sip">
+        <div><span class="kc-icon">💰</span><h3>Emergency Funds</h3><p>Why keeping 6 months of expenses safe is your first step to financial freedom.</p></div>
+        <a href="https://en.wikipedia.org/wiki/Emergency_fund" target="_blank" class="kc-link">Read on Wikipedia ↗</a>
+      </div>
+    </div>
+
+    <!-- Bottom Section: CTA & Accordion FAQ -->
+    <div class="kc-bottom-grid">
+      
+      <!-- Call to Action Box -->
+      <div class="kc-cta-box">
+        <h3>Want a Custom Investment Strategy?</h3>
+        <p>Chat directly with Rohit Kumar Singh on WhatsApp to plan your financial journey.</p>
+        <a href="https://wa.me/917079946867?text=Hi%20Rohit%20Sir,%20I%20want%20to%20discuss%20a%20custom%20investment%20strategy." target="_blank" class="kc-whatsapp-btn">
+          💬 Connect on WhatsApp for Custom Plan
+        </a>
+        <span class="arn-tag">AMFI Registered Mutual Fund Distributor (ARN-342662)</span>
+      </div>
+
+      <!-- FAQ Accordion List (All 8 Questions Added) -->
+      <div class="kc-faq-box">
+        <h3>Frequently Asked Questions</h3>
+        
+        <div class="faq-item">
+          <button class="faq-question">Is my money safe in Mutual Funds? <span class="faq-icon">+</span></button>
+          <div class="faq-answer">Yes, your money is highly secure. Mutual Funds in India are strictly regulated by SEBI (Securities and Exchange Board of India) and RBI. The system is 100% transparent.</div>
+        </div>
+        
+        <div class="faq-item">
+          <button class="faq-question">Are returns guaranteed like an FD? <span class="faq-icon">+</span></button>
+          <div class="faq-answer">No, returns are not fixed. However, historically, equity mutual funds have delivered better inflation-beating returns (typically 12-15%) over the long term compared to traditional savings.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">What if I miss my monthly SIP installment? <span class="faq-icon">+</span></button>
+          <div class="faq-answer">There is no penalty from the Mutual Fund company. Your bank might charge a small auto-debit bounce fee, but your SIP will simply continue from the next month.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">Can I increase or decrease my SIP amount? <span class="faq-icon">+</span></button>
+          <div class="faq-answer">Yes! You have complete flexibility. You can increase (Step-up), decrease, or stop your SIP at any time based on your financial situation.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">Can I withdraw my money anytime I want? <span class="faq-icon">+</span></button>
+          <div class="faq-answer">Yes, most mutual funds are open-ended, meaning you can withdraw anytime. The only exception is ELSS (Tax Saving Funds), which has a strict 3-year lock-in period.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">How long does withdrawal take? <span class="faq-icon">+</span></button>
+          <div class="faq-answer">Once you place a withdrawal request, the money is credited directly to your registered bank account within 1 to 3 working days.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">I don't know the share market. Can I invest? <span class="faq-icon">+</span></button>
+          <div class="faq-answer">Absolutely! That’s the beauty of Mutual Funds. Your money is managed by professional Fund Managers who do all the research and tracking for you.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">Do I have to pay tax on Mutual Fund returns? <span class="faq-icon">+</span></button>
+          <div class="faq-answer">Taxes apply only when you withdraw. For Equity funds held for more than 1 year, profits up to ₹1.25 Lakh per financial year are completely tax-free.</div>
+        </div>
+        
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Filter, Search & FAQ JavaScript -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // 1. Search & Filter Logic
+    const searchInput = document.getElementById('kcSearch');
+    const tabs = document.querySelectorAll('.kc-tab');
+    const cards = document.querySelectorAll('.kc-card');
+
+    function filterCards() {
+      const searchTerm = searchInput.value.toLowerCase();
+      const activeTab = document.querySelector('.kc-tab.active').getAttribute('data-filter');
+
+      cards.forEach(card => {
+        const title = card.querySelector('h3').innerText.toLowerCase();
+        const category = card.getAttribute('data-category');
+        const matchesSearch = title.includes(searchTerm);
+        const matchesTab = (activeTab === 'all' || category.includes(activeTab));
+
+        if (matchesSearch && matchesTab) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    }
+
+    searchInput.addEventListener('input', filterCards);
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        filterCards();
+      });
+    });
+
+    // 2. FAQ Accordion Logic
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+      const questionBtn = item.querySelector('.faq-question');
+      questionBtn.addEventListener('click', () => {
+        // Purani khuli hui FAQ band karne ke liye
+        faqItems.forEach(otherItem => {
+          if(otherItem !== item) {
+            otherItem.classList.remove('active');
+          }
+        });
+        // Click kiye gaye item ko open/close karna
+        item.classList.toggle('active');
+      });
+    });
+
+  });
+</script>
+<!-- ========================================== -->
     <!-- === 3. WHAT OUR CLIENTS SAY (TESTIMONIALS) === -->
 <style>
     /* Testimonial Carousel Styles */
@@ -919,59 +1322,487 @@
     }
 </script>
 <!-- ========================================== -->
+<!-- ========================================== -->
+<!-- QUICK CONTACT & SUPPORT SECTION (PAGE 6) -->
+<!-- ========================================== -->
+<style>
+  .contact-section { background-color: #f1f5f9; padding: 70px 20px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #334155; width: 100%; box-sizing: border-box; overflow-x: hidden; }
+  .contact-wrapper { width: 92%; max-width: 1050px; margin: 0 auto; box-sizing: border-box; }
+  
+  .contact-header { text-align: center; margin-bottom: 45px; }
+  .contact-header h2 { font-size: 36px; color: #0f172a; margin-bottom: 10px; font-weight: 800; }
+  .contact-header p { font-size: 17px; color: #64748b; max-width: 600px; margin: 0 auto; }
+  
+  .contact-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 35px; margin-bottom: 35px; width: 100%; box-sizing: border-box; }
+  
+  .contact-card { background: #ffffff; padding: 35px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; width: 100%; box-sizing: border-box; }
+  .contact-card h3 { font-size: 23px; color: #1e293b; margin-top: 0; margin-bottom: 22px; font-weight: bold; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; }
+  
+  .form-group { margin-bottom: 18px; }
+  .form-group label { display: block; font-weight: 600; margin-bottom: 7px; color: #334155; font-size: 14px; }
+  .form-control { width: 100%; padding: 12px 14px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; font-size: 15px; background: #f8fafc; transition: 0.3s; }
+  .form-control:focus { outline: none; border-color: #2563eb; background: #ffffff; box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
+  
+  .submit-btn { background: #2563eb; color: white; border: none; padding: 14px; width: 100%; border-radius: 8px; font-size: 17px; font-weight: bold; cursor: pointer; transition: 0.3s; margin-top: 8px; box-sizing: border-box; }
+  .submit-btn:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37,99,235,0.3); }
+  
+  .info-item { margin-bottom: 22px; display: flex; gap: 14px; align-items: flex-start; }
+  .info-icon { font-size: 22px; flex-shrink: 0; }
+  .info-text h4 { font-size: 17px; color: #0f172a; margin: 0 0 4px 0; }
+  .info-text p { color: #475569; margin: 0; line-height: 1.5; font-size: 15px; }
+  .info-text a.email-link { color: #2563eb; text-decoration: none; font-weight: 600; word-break: break-all; }
+  
+  .chat-btn { display: inline-flex; align-items: center; gap: 8px; background: #22c55e; color: white; padding: 9px 16px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 14px; margin-top: 8px; transition: 0.3s; }
+  .chat-btn:hover { background: #16a34a; }
+  
+  .map-container { width: 100%; height: 210px; border-radius: 8px; overflow: hidden; margin-top: 15px; border: 1px solid #e2e8f0; box-sizing: border-box; }
+  
+  .bottom-bar { display: flex; justify-content: space-between; align-items: center; background: #ffffff; padding: 22px 35px; border-radius: 12px; border: 1px solid #cbd5e1; flex-wrap: wrap; gap: 20px; width: 100%; box-sizing: border-box; }
+  .response-guarantee h4 { margin: 0 0 4px 0; color: #0f172a; font-size: 17px; }
+  .response-guarantee p { margin: 0; color: #64748b; font-size: 14px; }
+  
+  .login-teaser { text-align: right; }
+  .login-teaser h4 { margin: 0 0 8px 0; color: #475569; font-size: 14px; font-weight: normal; }
+  .login-teaser a { background: #0f172a; color: white; padding: 11px 22px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 15px; display: inline-flex; align-items: center; gap: 8px; transition: 0.3s; }
+  .login-teaser a:hover { background: #334155; }
+  
+  @media (max-width: 768px) { 
+    .contact-grid { grid-template-columns: minmax(0, 1fr); gap: 25px; } 
+    .bottom-bar { flex-direction: column; text-align: center; padding: 20px; }
+    .login-teaser { text-align: center; }
+  }
+</style>
 
-<!-- Contact Section -->
-<section id="contact" style="padding: 40px 20px; background-color: #f8fafc; font-family: Arial, sans-serif;">
-  <div style="max-width: 1100px; margin: 0 auto; background: #ffffff; padding: 40px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); display: flex; gap: 40px; flex-wrap: wrap; align-items: flex-start;">
+<section id="contact" class="contact-section">
+  <div class="contact-wrapper">
     
-    <!-- Left Column: Contact Details -->
-    <div style="flex: 1; min-width: 300px;">
-      <h2 style="font-size: 24px; color: #1e293b; margin-bottom: 20px; font-weight: bold;">Contact Details</h2>
-      <div style="margin-bottom: 25px; line-height: 1.8; color: #334155;">
-        <p style="margin: 5px 0;"><strong>Advisor:</strong> Rohit Kumar Singh</p>
-        <p style="margin: 5px 0;"><strong>Brand:</strong> WEALTHVRIDHI</p>
-        <p style="margin: 5px 0;">
-          <strong>Phone:</strong> 
-          <a href="tel:+917079946867" style="color: #2563eb; text-decoration: none;">+91 7079946867</a>
-        </p>
-        <p style="margin: 5px 0;">
-          <strong>WhatsApp:</strong> 
-          <a href="https://wa.me/917079946867" target="_blank" style="color: #16a34a; text-decoration: none;">Chat on WhatsApp</a>
-        </p>
-        <p style="margin: 5px 0;">
-          <strong>Email:</strong> 
-          <a href="mailto:wealthvridhi@gmail.com" style="color: #2563eb; text-decoration: none;">wealthvridhi@gmail.com</a>
-        </p>
+    <!-- Header Section -->
+    <div class="contact-header">
+      <h2>Get in Touch & Get Started</h2>
+      <p>Have questions about your wealth journey? Drop us a message or schedule a call.</p>
+    </div>
+
+    <div class="contact-grid">
+      <!-- Left Column: Message Form -->
+      <div class="contact-card">
+        <h3>Send a Message</h3>
+        <form action="https://formspree.io/f/mgaabype" method="POST">
+          
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" name="name" class="form-control" placeholder="e.g., Rohit Kumar Singh" required>
+          </div>
+          
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" name="phone" class="form-control" placeholder="e.g., 7079946867" required>
+          </div>
+          
+          <div class="form-group">
+            <label>Interested In</label>
+            <select name="interest" class="form-control" required>
+              <option value="" disabled selected>Select an option...</option>
+              <option value="Mutual Funds / SIP">Mutual Funds / SIP</option>
+              <option value="Insurance">Insurance</option>
+              <option value="Custom Financial Planning">Custom Financial Planning</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label>Your Message</label>
+            <textarea name="message" rows="4" class="form-control" placeholder="How can we help you?" required style="resize: vertical;"></textarea>
+          </div>
+          
+          <button type="submit" class="submit-btn">Send Message 🚀</button>
+        </form>
+      </div>
+
+      <!-- Right Column: Direct Contact Info -->
+      <div class="contact-card">
+        <h3>Direct Contact</h3>
+        
+        <div class="info-item">
+          <div class="info-icon">📍</div>
+          <div class="info-text">
+            <h4>Office Address</h4>
+            <p>Rohit Kumar Singh<br>Hanuman Nagar,<br>Chapra, Bihar</p>
+          </div>
+        </div>
+        
+        <div class="info-item">
+          <div class="info-icon">📞</div>
+          <div class="info-text">
+            <h4>Call or WhatsApp</h4>
+            <p>+91 7079946867<br><small style="color:#16a34a; font-weight:bold;">(ARN-342662 Verified)</small></p>
+            <a href="https://wa.me/917079946867" target="_blank" class="chat-btn">💬 Chat with Rohit</a>
+          </div>
+        </div>
+        
+        <div class="info-item">
+          <div class="info-icon">✉️</div>
+          <div class="info-text">
+            <h4>Email Us</h4>
+            <a href="mailto:wealthvridhi@gmail.com" class="email-link">wealthvridhi@gmail.com</a>
+          </div>
+        </div>
+        
+        <!-- Interactive Map Embed for Chapra -->
+        <div class="map-container">
+  <iframe 
+    src="https://maps.google.com/maps?q=25.787239,84.762603&z=16&output=embed" 
+    width="100%" 
+    height="100%" 
+    style="border:0;" 
+    allowfullscreen="" 
+    loading="lazy" 
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+</div>
+        
       </div>
     </div>
 
-    <!-- Right Column: Text & Form -->
-    <div style="flex: 1; min-width: 300px;">
-      <p style="color: #475569; font-size: 15px; margin-bottom: 20px; line-height: 1.5;">
-        Let's plan your financial journey today. Drop a message or call to book a free consultation.
-      </p>
-      <!-- Active Contact Form -->
-      <form action="https://formspree.io/f/mgaabype" method="POST" style="display: flex; flex-direction: column; gap: 15px;">
-        <input type="text" name="name" placeholder="Your Name" required style="padding: 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px;">
-        <input type="tel" name="phone" placeholder="Your Mobile Number" required style="padding: 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px;">
-        <textarea name="message" rows="4" placeholder="How can we help you? (e.g. Want to start a SIP)" required style="padding: 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px; resize: vertical;"></textarea>
-        <button type="submit" style="background-color: #2563eb; color: white; padding: 12px; border: none; border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer;">Submit Details</button>
-      </form>
+    <!-- Bottom Bar (Response Guarantee & Login Portal) -->
+    <div class="bottom-bar">
+      <div class="response-guarantee">
+        <h4>Response Guarantee</h4>
+        <p>We typically reply within 24 hours during business hours.</p>
+      </div>
+      <div class="login-teaser">
+        <h4>Looking for Client Portal?</h4>
+        <a href="login.html">Login to Your Account 🔒</a>
+      </div>
     </div>
 
   </div>
 </section>
+<!-- ========================================== -->
 
-<!-- Footer & Disclaimer -->
-<footer>
-    <p>&copy; 2026 WEALTHVRIDHI - Rohit Kumar Singh. All Rights Reserved.</p>
-    <div class="disclaimer">
-        <strong>Mandatory Disclaimer:</strong> Mutual Fund investments are subject to market risks, read all scheme related documents carefully. The calculators provided on this website are for illustrative purposes only and do not represent actual returns. Past performance is not an indicator of future returns. 
-        <br><br>
-        AMFI Registered Mutual Fund Distributor ARN-342662.
+
+<!-- ============================================================ -->
+<!-- WEALTHVRIDHI COMPLETE FOOTER: SECTIONS 4, 5, 6 THEN 1, 2, 3 -->
+<!-- ============================================================ -->
+<style>
+  .wv-footer-wrapper { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; width: 100%; box-sizing: border-box; overflow-x: hidden; }
+  .wv-footer-wrapper * { box-sizing: border-box; }
+  .wv-container { width: 92%; max-width: 1120px; margin: 0 auto; }
+
+  /* ============================================================ */
+  /* PART 1 (TOP): SECTIONS 4, 5 & 6 - COMPLIANCE & CREDENTIALS   */
+  /* ============================================================ */
+  .wv-compliance-base { background-color: #f8fafc; color: #334155; padding: 55px 20px 55px 20px; border-top: 3px solid #e2e8f0; }
+
+  /* Section 4: 3-in-1 Credentials Strip */
+  .wv-cred-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; margin-bottom: 35px; }
+  .wv-cred-card { background: #ffffff; border: 1px solid #cbd5e1; border-radius: 12px; padding: 22px 18px; text-align: center; box-shadow: 0 4px 12px rgba(15,23,42,0.04); transition: 0.25s; }
+  .wv-cred-card:hover { border-color: #2563eb; transform: translateY(-2px); }
+  .wv-cred-badge { width: 46px; height: 46px; border-radius: 50%; margin: 0 auto 12px auto; display: flex; align-items: center; justify-content: center; font-size: 22px; }
+  .cb-blue { background: #dbeafe; color: #1d4ed8; }
+  .cb-slate { background: #e2e8f0; color: #0f172a; }
+  .cb-teal { background: #ccfbf1; color: #0f766e; }
+  .wv-cred-card h5 { margin: 0 0 6px 0; font-size: 16.5px; color: #0f172a; font-weight: 700; }
+  .wv-cred-card p { margin: 0; font-size: 13.5px; color: #475569; line-height: 1.5; }
+  /* 3D Flip Credential Badge (Hover on PC + Tap on Mobile) */
+  .wv-flip-badge {
+    perspective: 800px;
+    display: inline-block;
+    margin-top: 10px;
+    width: 225px;
+    max-width: 100%;
+    height: 38px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .wv-flip-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.55s cubic-bezier(0.4, 0.2, 0.2, 1);
+    transform-style: preserve-3d;
+  }
+  @media (hover: hover) {
+    .wv-flip-badge:hover .wv-flip-inner {
+      transform: rotateY(180deg);
+    }
+  }
+  .wv-flip-badge.flipped .wv-flip-inner {
+    transform: rotateY(180deg);
+  }
+  .wv-flip-front, .wv-flip-back {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .wv-flip-front {
+    background: #f1f5f9;
+    color: #0f172a;
+    border: 1px solid #cbd5e1;
+  }
+  .wv-flip-back {
+    background: #0f172a;
+    color: #34d399;
+    border: 1px solid #0f172a;
+    transform: rotateY(180deg);
+  }
+
+  /* Section 5: Statutory Risk & Role Disclaimers */
+  .wv-disclaimer-box { background: #ffffff; border: 1px solid #cbd5e1; border-left: 5px solid #0f172a; border-radius: 10px; padding: 26px 28px; margin-bottom: 35px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+  .wv-disclaimer-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; border-bottom: 1px solid #f1f5f9; padding-bottom: 10px; }
+  .wv-disclaimer-header h4 { margin: 0; font-size: 16px; color: #0f172a; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; }
+  .wv-reg-pill { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 6px; }
+  .wv-disclaimer-box p { font-size: 13px; color: #475569; line-height: 1.65; margin: 0 0 12px 0; text-align: justify; }
+  .wv-disclaimer-box p:last-child { margin-bottom: 0; }
+  .wv-disclaimer-box strong { color: #0f172a; }
+
+  /* Section 6: Investor Grievance Hub */
+  .wv-grievance-hub { text-align: center; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 12px; padding: 24px 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+  .wv-grievance-hub h4 { margin: 0 0 16px 0; font-size: 17px; color: #0f172a; font-weight: 700; }
+  .wv-grievance-pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
+  .gv-pill { padding: 10px 22px; border-radius: 50px; font-size: 14px; font-weight: 700; text-decoration: none; transition: 0.25s; box-shadow: 0 3px 8px rgba(0,0,0,0.08); display: inline-flex; align-items: center; gap: 6px; }
+  .gv-pill:hover { transform: translateY(-2px); filter: brightness(1.06); }
+  .gv-scores { background: #2563eb; color: #ffffff; }
+  .gv-odr { background: #06b6d4; color: #0f172a; }
+  .gv-bima { background: #65a30d; color: #ffffff; }
+  .gv-amfi { background: #dc2626; color: #ffffff; }
+
+  /* ============================================================ */
+  /* PART 2 (BOTTOM): SECTIONS 1, 2 & 3 - NAVIGATION & SUPPORT    */
+  /* ============================================================ */
+  .wv-footer-main { background-color: #0f172a; color: #e2e8f0; padding: 60px 20px 35px 20px; }
+
+  /* Section 1: 4-Column Navigation Grid */
+  .wv-nav-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 35px; margin-bottom: 45px; }
+  .wv-col h4 { color: #ffffff; font-size: 17px; font-weight: 700; margin: 0 0 18px 0; border-bottom: 2px solid #1e293b; padding-bottom: 8px; }
+  .wv-col ul { list-style: none; padding: 0; margin: 0; }
+  .wv-col ul li { margin-bottom: 11px; font-size: 14.5px; color: #94a3b8; line-height: 1.5; }
+  .wv-col ul li a { color: #cbd5e1; text-decoration: none; transition: 0.25s; display: inline-block; }
+  .wv-col ul li a:hover { color: #38bdf8; transform: translateX(3px); }
+  .wv-contact-highlight { color: #ffffff; font-weight: 600; }
+
+  /* Section 2: Execution & Transparency Strip */
+  .wv-transparency-strip { text-align: center; margin-bottom: 35px; }
+  .wv-pill-banner { display: inline-block; background: #1e293b; border: 1px solid #334155; color: #e0f2fe; padding: 12px 28px; border-radius: 50px; font-size: 14px; font-weight: 600; letter-spacing: 0.2px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); }
+
+  /* Section 3: Copyright, Social & Back to Top */
+  .wv-action-bar { border-top: 1px solid #1e293b; padding-top: 28px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 18px; }
+  .wv-copyright { font-size: 14px; color: #94a3b8; margin: 0; }
+  
+  .wv-social-row { display: flex; gap: 14px; justify-content: center; align-items: center; flex-wrap: wrap; }
+  .wv-social-icon { width: 40px; height: 40px; border-radius: 10px; display: inline-flex; align-items: center; justify-content: center; color: #ffffff; text-decoration: none; transition: 0.3s; font-weight: bold; }
+  .wv-social-icon:hover { transform: translateY(-3px); box-shadow: 0 6px 14px rgba(0,0,0,0.3); }
+  .sc-fb { background: #1877f2; }
+  .sc-in { background: #0a66c2; }
+  .sc-yt { background: #ff0000; }
+  .sc-ig { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+  .sc-wa { background: #22c55e; }
+
+  .wv-top-btn { background: #1e293b; color: #e2e8f0; border: 1px solid #334155; padding: 8px 18px; border-radius: 6px; font-size: 13.5px; font-weight: 600; cursor: pointer; transition: 0.25s; }
+  .wv-top-btn:hover { background: #2563eb; border-color: #2563eb; color: #ffffff; }
+
+  /* Responsive Breakpoints */
+  @media (max-width: 900px) {
+    .wv-nav-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .wv-cred-grid { grid-template-columns: minmax(0, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .wv-nav-grid { grid-template-columns: minmax(0, 1fr); gap: 25px; }
+    .wv-pill-banner { border-radius: 12px; font-size: 13px; padding: 12px 16px; }
+    .wv-disclaimer-box { padding: 20px 18px; }
+    .wv-disclaimer-box p { text-align: left; }
+  }
+</style>
+
+<footer class="wv-footer-wrapper">
+
+  <!-- ============================================================ -->
+  <!-- PEHLE: SECTIONS 4, 5 & 6 (CREDENTIALS, DISCLAIMER, GRIEVANCE) -->
+  <!-- ============================================================ -->
+  <div class="wv-compliance-base" id="legal-disclaimers">
+    <div class="wv-container">
+
+      <!-- SECTION 4: 3-in-1 Credentials Strip (Interactive Flip) -->
+      <div class="wv-cred-grid">
+        
+        <!-- Card 1: Mutual Funds -->
+        <div class="wv-cred-card">
+          <div class="wv-cred-badge cb-blue">🏅</div>
+          <h5>Mutual Funds</h5>
+          <p>AMFI-Registered Distributor</p>
+          <div class="wv-flip-badge" onclick="this.classList.toggle('flipped')" title="Hover or Tap to see name">
+            <div class="wv-flip-inner">
+              <div class="wv-flip-front">ARN-342662 ↻</div>
+              <div class="wv-flip-back">Holder: Rohit Kumar Singh</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Life Insurance -->
+        <div class="wv-cred-card">
+          <div class="wv-cred-badge cb-slate">🛡️</div>
+          <h5>Life Insurance</h5>
+          <p>Authorised LIC Agent</p>
+          <div class="wv-flip-badge" onclick="this.classList.toggle('flipped')" title="Hover or Tap to see name">
+            <div class="wv-flip-inner">
+              <div class="wv-flip-front">Agency Code ↻</div>
+              <div class="wv-flip-back">Rohit Kumar Singh</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: General & Health -->
+        <div class="wv-cred-card">
+          <div class="wv-cred-badge cb-teal">✅</div>
+          <h5>General &amp; Health</h5>
+          <p>IRDAI Certified PoSP</p>
+          <div class="wv-flip-badge" onclick="this.classList.toggle('flipped')" title="Hover or Tap to see name">
+            <div class="wv-flip-inner">
+              <div class="wv-flip-front">PoSP ID &amp; Sponsor ↻</div>
+              <div class="wv-flip-back">PoSP: Rohit Kumar Singh</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      
+      <!-- SECTION 5: Statutory Risk & Role Disclaimers -->
+      <div class="wv-disclaimer-box">
+        <div class="wv-disclaimer-header">
+          <h4>Disclaimer</h4>
+          <span class="wv-reg-pill">⚠️ AMFI, LIC &amp; PoSP Compliant!</span>
+        </div>
+        <p>
+          <strong>WEALTHVRIDHI</strong> makes no warranties or representations, express or implied, on third-party financial or insurance products offered through this platform. It accepts no liability for any damages or losses, however caused, in connection with the use of, or reliance upon, the information, tools, or services on this website. On Regular Mutual Fund plans and insurance policies, <strong>WEALTHVRIDHI</strong> / its registered representatives earn trail commission or brokerage directly from the respective Asset Management Companies (AMCs) and insurers as per regulatory norms. Unless otherwise specified, all returns, expense ratios, NAVs, and calculator projections shown on this website are for illustrative purposes only. Future outcomes will vary and depend on personal and market circumstances. The information provided in our Knowledge Center, FAQs, and blogs is strictly educational and does not constitute investment, legal, or tax advice.
+        </p>
+        <p>
+          <strong>Mutual fund investments are subject to market risks. Please read all scheme related documents carefully before investing.</strong> Past performance of the schemes is neither an indicator nor a guarantee of future performance.
+        </p>
+        <p>
+          <strong>Insurance is the subject matter of solicitation.</strong> For complete details on risk factors, terms, conditions, and exclusions, please read the respective sales brochure and policy wordings carefully before concluding a sale. Policy issuance, underwriting, and claim settlement are strictly subject to the terms of the respective insurance company.
+        </p>
+        <p>
+          Terms and Conditions of the website are applicable. Privacy Policy and Commission Disclosures of the website are applicable.
+        </p>
+      </div>
+
+      <!-- SECTION 6: Investor Grievance Hub -->
+      <div class="wv-grievance-hub" id="grievance-hub">
+        <h4>Investor Grievance Hub</h4>
+        <div class="wv-grievance-pills">
+          <a href="https://scores.sebi.gov.in/" target="_blank" rel="noopener" class="gv-pill gv-scores">SEBI SCORES</a>
+          <a href="https://smartodr.in/" target="_blank" rel="noopener" class="gv-pill gv-odr">SMART ODR</a>
+          <a href="https://bimabharosa.irdai.gov.in/" target="_blank" rel="noopener" class="gv-pill gv-bima">Bima Bharosa</a>
+          <a href="https://www.amfiindia.com/investor-corner" target="_blank" rel="noopener" class="gv-pill gv-amfi">AMFI Corner</a>
+        </div>
+      </div>
+
     </div>
-</footer>
+  </div>
 
+  <!-- ============================================================ -->
+  <!-- BAAD MEIN: SECTIONS 1, 2 & 3 (NAVIGATION, TRANSPARENCY, COPY) -->
+  <!-- ============================================================ -->
+  <div class="wv-footer-main">
+    <div class="wv-container">
+      
+      <!-- SECTION 1: 4-Column Footer Navigation Grid -->
+      <div class="wv-nav-grid">
+        
+        <!-- Column 1: Quick Links -->
+        <div class="wv-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="advanced-calculator.html">Calculators</a></li>
+            <li><a href="#knowledge">Knowledge Hub</a></li>
+            <li><a href="login.html">Client Login</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 2: Solutions -->
+        <div class="wv-col">
+          <h4>Solutions</h4>
+          <ul>
+            <li><a href="#services">Mutual Funds &amp; SIP</a></li>
+            <li><a href="#services">Tax Saving (ELSS)</a></li>
+            <li><a href="#services">Life Insurance (LIC)</a></li>
+            <li><a href="#services">Health &amp; Motor (PoSP)</a></li>
+            <li><a href="#services">Fixed Deposits</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Compliance & Legal -->
+        <div class="wv-col">
+          <h4>Compliance &amp; Legal</h4>
+          <ul>
+            <li><a href="#legal-disclaimers">Privacy Policy</a></li>
+            <li><a href="#legal-disclaimers">Terms &amp; Conditions</a></li>
+            <li><a href="#legal-disclaimers">Commission Disclosure</a></li>
+            <li><a href="#legal-disclaimers">Full Disclaimers</a></li>
+            <li><a href="#grievance-hub">Grievance Desk</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Get In Touch -->
+        <div class="wv-col">
+          <h4>Get In Touch</h4>
+          <ul>
+            <li class="wv-contact-highlight">Rohit Kumar Singh</li>
+            <li>Chapra, Bihar</li>
+            <li><a href="mailto:wealthvridhi@gmail.com">wealthvridhi@gmail.com</a></li>
+            <li><a href="tel:+917079946867" class="wv-contact-highlight">+91 7079946867</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- SECTION 2: Execution & Transparency Strip -->
+      <div class="wv-transparency-strip">
+        <div class="wv-pill-banner">
+          Official AMC &amp; Insurer Execution &nbsp;|&nbsp; Transparent Distribution &nbsp;|&nbsp; KYC &amp; Privacy Protected 🔒
+        </div>
+      </div>
+
+      <!-- SECTION 3: Copyright, Social & Action Bar -->
+      <div class="wv-action-bar">
+        <p class="wv-copyright">&copy; 2026 WEALTHVRIDHI - Rohit Kumar Singh. All Rights Reserved.</p>
+        
+        <div class="wv-social-row">
+          <a href="#" target="_blank" class="wv-social-icon sc-fb" aria-label="Facebook">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z"/></svg>
+          </a>
+          <a href="#" target="_blank" class="wv-social-icon sc-in" aria-label="LinkedIn">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M6.94 5a2 2 0 1 1-4-.002 2 2 0 0 1 4 .002zM7 8.48H3V21h4V8.48zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.72-2.91l.04-1.68z"/></svg>
+          </a>
+          <a href="#" target="_blank" class="wv-social-icon sc-yt" aria-label="YouTube">
+            <svg width="19" height="19" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </a>
+          <a href="#" target="_blank" class="wv-social-icon sc-ig" aria-label="Instagram">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="https://wa.me/917079946867" target="_blank" class="wv-social-icon sc-wa" aria-label="WhatsApp">
+            <svg width="19" height="19" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"/></svg>
+          </a>
+        </div>
+
+        <button class="wv-top-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">[ ↑ Back to Top ]</button>
+      </div>
+
+    </div>
+  </div>
+
+</footer>
+<!-- ============================================================ -->
 <!-- Floating WhatsApp -->
 <a href="https://wa.me/917079946867?text=Hello%20Rohit%20Sir,%20I%20want%20to%20know%20more%20about%20Mutual%20Funds." class="whatsapp-float" target="_blank">
     💬 Chat on WhatsApp
