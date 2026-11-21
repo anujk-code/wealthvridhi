@@ -87,7 +87,7 @@
             const { data: { session } } = await supabaseClient.auth.getSession();
             
             if (!session) {
-                window.location.href = 'login-test.html';
+                window.location.href = 'login.html';
                 return;
             }
 
@@ -173,7 +173,7 @@
 
         document.getElementById('logoutBtn').addEventListener('click', async () => {
             await supabaseClient.auth.signOut();
-            window.location.href = 'login-test.html';
+            window.location.href = 'login.html';
         });
 
         loadDashboard();
