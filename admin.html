@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - WealthVriddhi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body class="bg-gray-50 p-8 font-sans text-gray-800">
+
+    <!-- Admin Login Section -->
+    <div id="adminLoginBox" class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md border border-gray-200 mt-10">
+        <h1 class="text-2xl font-bold text-blue-700 text-center mb-2">WealthVriddhi Admin</h1>
+        <p class="text-sm text-gray-500 text-center mb-6">RLS Protected Data Sync Panel</p>
+
+        <form id="adminLoginForm" class="space-y-4">
+            <div>
+                <label class="block text-sm font-bold text-gray-700 mb-1">Admin Email</label>
+                <input type="email" id="adminEmail" value="anuj171105@gmail.com" class="w-full border p-2.5 rounded outline-none focus:border-blue-500" required>
+            </div>
+            <div>
+                <label class="block text-sm font-bold text-gray-700 mb-1">Admin Password</label>
+                <input type="password" id="adminPassword" placeholder="Enter Admin Password" class="w-full border p-2.5 rounded outline-none focus:border-blue-500" required>
+            </div>
+            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 rounded shadow cursor-pointer">
+                Unlock Admin Panel
+            </button>
+            <p id="loginError" class="text-red-500 text-sm text-center hidden"></p>
+        </form>
+    </div>
+
+    <!-- Main Admin Dashboard (Login ke baad dikhega) -->
+    <div id="adminPanelSection" class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-md border border-gray-200 hidden">
+        
+        <div class="flex justify-between items-center mb-6 border-b pb-4">
+            <h1 class="text-2xl font-bold text-blue-700">Admin Dashboard - Data Sync</h1>
+            <div class="flex items-center gap-3">
+                <div id="connectionStatus" class="px-4 py-2 rounded-full font-bold text-sm bg-green-100 text-green-700">
+                    🟢 Admin Logged In
+                </div>
+                <button id="adminLogoutBtn" type="button" class="bg-red-600 hover:bg-red-700 text-white px-3 py-1.5 rounded text-sm font-semibold cursor-pointer">
+                    Logout
+                </button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div class="p-4 border rounded-lg bg-blue-50">
+                <label class="block font-bold mb-2 text-blue-800">1. Upload WBR2 (Transactions & Clients)</label>
+                <input type="file" id="wbr2File" accept=".csv, .xlsx, .xls" class="border p-2 rounded w-full bg-white">
+                <p class="text-xs text-gray-500 mt-2">Isse ID/Password banenge aur Invested Amount niklega.</p>
+            </div>
+            
+            <div class="p-4 border rounded-lg bg-green-50">
+                <label class="block font-bold mb-2 text-green-800">2. Upload WBR22 (Current Valuation)</label>
+                <input type="file" id="wbr22File" accept=".csv, .xlsx, .xls" class="border p-2 rounded w-full bg-white">
+                <p class="text-xs text-gray-500 mt-2">Isse Current Value (closing_assets) table mein jayega.</p>
+            </div>
+        </div>
+
+        <button id="processBtn" type="button" class="w-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-bold py-3 px-6 rounded shadow cursor-pointer">
+            Auto-Create Accounts & Sync Portfolio Data
+        </button>
+
+        <div id="logArea" class="mt-6 p-4 bg-gray-900 rounded text-sm h-72 overflow-y-auto">
+            <strong class="text-white">Processing Log:</strong><br>
+            <div id="logText" class="text-gray-300 mt-2">>> Admin verified. Dono files select karke button dabaiye...</div>
+        </div>
+    </div>
+
+    <script>
+        const SUPABASE_URL = 'https://rlllspfhssonpfbqhkbu.supabase.co';
+        const SUPABASE_ANON_KEY = 'sb_publishable_UO0if8aY29MU98v7EOSMzg_QJSK4JZL';
+
+        // 1. Admin ke database delete/insert ke liye main client
+        const adminClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+            auth: { autoRefreshToken: true, persistSession: false }
+        });
+
+        // 2. Naye client accounts signUp karne ke liye alag client (taaki admin session overwrite na ho)
+        const signupClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+            auth: { autoRefreshToken: false, persistSession: false, storageKey: 'wv-signup-temp' }
+        });
+
+        const statusBadge = document.getElementById('connectionStatus');
+        const loginBox = document.getElementById('adminLoginBox');
+        const panelSection = document.getElementById('adminPanelSection');
+        const loginError = document.getElementById('loginError');
+
+        // Admin Login Handler
+        document.getElementById('adminLoginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            loginError.classList.add('hidden');
+
+            const email = document.getElementById('adminEmail').value.trim();
+            const password = document.getElementById('adminPassword').value;
+
+            const { data, error } = await adminClient.auth.signInWithPassword({
+                email: email,
+                password: password
+            });
+
+            if (error) {
+                loginError.innerText = "Login Failed: " + error.message;
+                loginError.classList.remove('hidden');
+            } else {
+                loginBox.classList.add('hidden');
+                panelSection.classList.remove('hidden');
+            }
+        });
+
+        // Admin Logout Handler
+        document.getElementById('adminLogoutBtn').addEventListener('click', async () => {
+            await adminClient.auth.signOut();
+            panelSection.classList.add('hidden');
+            loginBox.classList.remove('hidden');
+            document.getElementById('adminPassword').value = '';
+        });
+
+        function logStatus(msg, isError = false) {
+            const logBox = document.getElementById('logArea');
+            const logText = document.getElementById('logText');
+            const color = isError ? 'text-red-400' : 'text-green-400';
+            logText.innerHTML += `<div class="${color} mt-1">>> ${msg}</div>`;
+            logBox.scrollTop = logBox.scrollHeight;
+        }
+
+        function readExcelFile(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    try {
+                        const data = new Uint8Array(e.target.result);
+                        const workbook = XLSX.read(data, { type: 'array' });
+                        const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+                        const jsonData = XLSX.utils.sheet_to_json(firstSheet, { defval: "" });
+                        resolve(jsonData);
+                    } catch (err) { reject(err); }
+                };
+                reader.onerror = (err) => reject(err);
+                reader.readAsArrayBuffer(file);
+            });
+        }
+
+        function findColumnValue(row, possibleNames) {
+            const keys = Object.keys(row);
+            for (let key of keys) {
+                const cleanKey = key.trim().toUpperCase();
+                if (possibleNames.includes(cleanKey)) {
+                    return String(row[key]).trim();
+                }
+            }
+            return "";
+        }
+
+        document.getElementById('processBtn').addEventListener('click', async () => {
+            const { data: { session } } = await adminClient.auth.getSession();
+            if (!session) {
+                alert("Admin session expire ho gaya hai, please dobara login karein!");
+                return;
+            }
+
+            const wbr2Input = document.getElementById('wbr2File');
+            const wbr22Input = document.getElementById('wbr22File');
+            
+            if (!wbr2Input.files.length) {
+                alert("Bhai, pehle 1st box mein WBR2 file select karo!");
+                return;
+            }
+
+            statusBadge.innerText = "🔄 Processing...";
+            statusBadge.className = "px-4 py-2 rounded-full font-bold text-sm bg-blue-100 text-blue-700";
+
+            try {
+                // 1. WBR2 Processing (Accounts Creation + Folio Mapping)
+                logStatus('WBR2 file read ho rahi hai (Accounts + Invested Amount)...');
+                const wbr2Data = await readExcelFile(wbr2Input.files[0]);
+                let processedPANs = [];
+                let folioMap = {};
+
+                for (let row of wbr2Data) {
+                    let pan = findColumnValue(row, ['PAN', 'PAN_NO', 'PAN NO', 'PAN1', 'INV_PAN']).toUpperCase();
+                    let name = findColumnValue(row, ['INV_NAME', 'INVNAME', 'INVESTOR NAME', 'INVESTOR_NAME', 'NAME', 'CLIENT_NAME']);
+                    let folio = findColumnValue(row, ['FOLIO_NO', 'FOLIO', 'FOLIO NUMBER']);
+                    let scheme = findColumnValue(row, ['SCHEME', 'SCHEME_NAME', 'SCHEME NAME']);
+                    let amount = parseFloat(findColumnValue(row, ['AMOUNT', 'INV_AMOUNT', 'COST'])) || 0;
+                    let trxnType = findColumnValue(row, ['TRXNTYPE', 'TRXN_TYPE']).toUpperCase();
+                    let trxnNature = findColumnValue(row, ['TRXN_NATURE', 'NATURE']).toUpperCase();
+
+                    if (folio && pan) {
+                        if (!folioMap[folio]) {
+                            folioMap[folio] = {
+                                pan: pan,
+                                clientName: name,
+                                schemeName: scheme,
+                                investedAmount: 0
+                            };
+                        }
+                        if (trxnType.startsWith('R') || trxnNature.includes('REDEMPTION') || trxnNature.includes('SWITCH OUT')) {
+                            folioMap[folio].investedAmount -= amount;
+                        } else {
+                            folioMap[folio].investedAmount += amount;
+                        }
+                    }
+
+                    if (pan && name && pan.length === 10 && !processedPANs.includes(pan)) {
+                        processedPANs.push(pan);
+
+                        let email = `${pan.toLowerCase()}@wealthvriddhi.com`;
+                        let cleanName = name.replace(/^(MR\.|MRS\.|MS\.|SHRI|SMT)\s+/i, '').trim();
+                        let firstName = cleanName.split(/\s+/)[0].replace(/[^a-zA-Z]/g, '');
+                        let password = firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase() + '@123';
+
+                        const { error } = await signupClient.auth.signUp({
+                            email: email,
+                            password: password,
+                            options: { data: { full_name: name, pan: pan } }
+                        });
+
+                        if (!error) {
+                            logStatus(`Account Ready: ${pan} | Pass: ${password}`);
+                        }
+                        await new Promise(r => setTimeout(r, 100));
+                    }
+                }
+                logStatus(`--- WBR2 Complete: ${processedPANs.length} unique PANs mile ---`);
+
+                // 2. WBR22 Processing (Syncing into 'portfolio_data' table)
+                if (wbr22Input.files.length > 0) {
+                    logStatus('WBR22 file se Current Value (closing_assets) read kiya ja raha hai...');
+                    const portfolioRows = await readExcelFile(wbr22Input.files[0]);
+                    logStatus(`Total portfolio rows mili: ${portfolioRows.length}. Purana data clear ho raha hai...`);
+
+                    const { error: deleteError } = await adminClient.from('portfolio_data').delete().neq('id', 0);
+                    if (deleteError) {
+                        throw new Error("Delete Blocked (RLS check karein): " + deleteError.message);
+                    }
+
+                    let syncedCount = 0;
+                    for (let pRow of portfolioRows) {
+                        let folio = findColumnValue(pRow, ['FOLIO', 'FOLIO_NO', 'FOLIO NUMBER']);
+                        let clientName = findColumnValue(pRow, ['INV_NAME', 'INVESTOR NAME', 'NAME']);
+                        let scheme = findColumnValue(pRow, ['SCHEME_NAME', 'SCHEME', 'SCHEME NAME']);
+                        let curValue = parseFloat(findColumnValue(pRow, ['CLOSING_ASSETS', 'CURVAL', 'CURRENT_VALUE', 'VALUE'])) || 0;
+                        let units = parseFloat(findColumnValue(pRow, ['UNITS', 'BALANCE_UNITS'])) || 0;
+                        let nav = parseFloat(findColumnValue(pRow, ['NAV', 'CUR_NAV', 'LATEST_NAV'])) || 0;
+
+                        let mappedData = folioMap[folio] || {};
+                        let pan = findColumnValue(pRow, ['PAN', 'PAN_NO', 'INV_PAN']) || mappedData.pan || "";
+                        let invAmount = mappedData.investedAmount !== undefined ? mappedData.investedAmount : 0;
+
+                        if (invAmount < 0 || curValue === 0) {
+                            invAmount = curValue === 0 ? 0 : invAmount;
+                        }
+
+                        if (pan && (curValue > 0 || invAmount > 0)) {
+                            const { error: insertError } = await adminClient
+                                .from('portfolio_data')
+                                .insert({
+                                    user_id_pan: pan.toUpperCase(),
+                                    client_name: clientName || mappedData.clientName,
+                                    folio_number: folio,
+                                    scheme_name: scheme || mappedData.schemeName,
+                                    invested_amount: Math.round(invAmount),
+                                    current_value: Math.round(curValue),
+                                    units: units,
+                                    nav: nav
+                                });
+
+                            if (!insertError) {
+                                syncedCount++;
+                            } else {
+                                logStatus(`Insert Error (${folio}): ${insertError.message}`, true);
+                            }
+                        }
+                    }
+                    logStatus(`✅ Portfolio Sync Complete! Total ${syncedCount} active folios 'portfolio_data' table mein save ho gaye hain.`);
+                } else {
+                    logStatus(`⚠️ WBR22 file select nahi ki gayi. Sirf accounts process huye.`, true);
+                }
+
+                statusBadge.innerText = "✅ Process Complete";
+                statusBadge.className = "px-4 py-2 rounded-full font-bold text-sm bg-green-100 text-green-700";
+
+            } catch (err) {
+                logStatus(`Critical Error: ${err.message}`, true);
+                statusBadge.innerText = "🔴 Error Occurred";
+                statusBadge.className = "px-4 py-2 rounded-full font-bold text-sm bg-red-100 text-red-700";
+            }
+        });
+    </script>
+</body>
+</html>
